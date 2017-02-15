@@ -142,8 +142,6 @@ public class MainActivity extends AppCompatActivity {
                         return null;
             }
 
-
-
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
