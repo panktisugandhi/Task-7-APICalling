@@ -113,31 +113,33 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-                HttpURLConnection connection;
-                //URL url = null;
-                try {
-                    URL url = new URL("params[0]");
-                    try {
-                        connection = (HttpURLConnection) url.openConnection();
-                        connection.connect();
-                        InputStream stream = connection.getInputStream();
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-                        StringBuffer buffer = new StringBuffer();
-                        String line = "";
-                            while ((line = reader.readLine()) != null) {
-                                buffer.append(line);
-                            }
 
-                        String bufferString = buffer.toString();
-                        return bufferString;
+            HttpURLConnection connection;
+        URL url = null;
+       try {
+            url = new URL("https://jsonplaceholder.typicode.com/posts");
+           try {
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+            InputStream stream = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuffer buffer = new StringBuffer();
+            String line = "";
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } catch (MalformedURLException e) {
+                while ((line = reader.readLine()) != null) {
+
+                    buffer.append(line);
+                }
+
+                String bufferString = buffer.toString();
+               return bufferString;
+                }catch (IOException e) {
                     e.printStackTrace();
                 }
-                return null;
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                        return null;
             }
 
 
